@@ -4,8 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, InputAdornment } from "@mui/material";
 import { AuthInput } from "./components/AuthInput";
 import { Email, Lock, Person } from "@mui/icons-material";
-import { useState } from "react";
 import { AuthButton } from "./components/AuthButton";
+import { useMutation } from "@tanstack/react-query";
+import { registerFn } from "./actions";
+import { useNavigate } from "react-router";
 
 export const Register = () => {
   const {
@@ -22,43 +24,23 @@ export const Register = () => {
     },
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
-  const onSubmit = handleSubmit(async (data) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: registerFn,
+    onSuccess: (data) => {
+      console.log("Register successfullllllllllll:", data);
+      navigate("/login");
+    },
+    onError: (error) => {
+      console.log("Register failedlllllllllll:", error.message);
+    },
+  });
+
+  const onSubmit = handleSubmit((data) => {
     console.log("Form Data:", data);
 
-    setIsSubmitting(true);
-
-    if (data.password !== data.confirmPassword) {
-      console.error("Passwords do not match");
-      return;
-    }
-
-    const newUser = {
-      fullName: data.fullName,
-      email: data.email,
-      password: data.password,
-    };
-
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error("Register failed:", errorData);
-      setIsSubmitting(false);
-      return;
-    }
-
-    const resData = await res.json();
-
-    console.log("Register successful:", resData);
-    setIsSubmitting(false);
+    mutate(data);
   });
 
   return (
@@ -123,7 +105,7 @@ export const Register = () => {
         }}
       />
 
-      <AuthButton isSubmitting={isSubmitting} text="Create Account" />
+      <AuthButton isSubmitting={isPending} text="Create Account" />
     </Box>
   );
 };

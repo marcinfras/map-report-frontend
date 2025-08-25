@@ -5,7 +5,9 @@ import { loginSchema, type LoginFormValues } from "./authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthInput } from "./components/AuthInput";
 import { AuthButton } from "./components/AuthButton";
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { loginFn } from "./actions";
+import { useNavigate } from "react-router";
 
 export const Login = () => {
   const {
@@ -20,33 +22,23 @@ export const Login = () => {
     },
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
-  const onSubmit = handleSubmit(async (data) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: loginFn,
+    onSuccess: (data) => {
+      console.log("Login successfullllllllllll:", data);
+      navigate("/");
+    },
+    onError: (error) => {
+      console.log("Login failedlllllllllll:", error.message);
+    },
+  });
+
+  const onSubmit = handleSubmit((data) => {
     console.log("Form Data:", data);
-    setIsSubmitting(true);
 
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    console.log("res", res);
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error("Login failed:", errorData);
-      setIsSubmitting(false);
-      return;
-    }
-
-    const resData = await res.json();
-
-    console.log("Login successful:", resData);
-    setIsSubmitting(false);
+    mutate(data);
   });
 
   return (
@@ -81,7 +73,7 @@ export const Login = () => {
           ),
         }}
       />
-      <AuthButton isSubmitting={isSubmitting} text="Sign In" />
+      <AuthButton isSubmitting={isPending} text="Sign In" />
     </Box>
   );
 };
