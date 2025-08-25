@@ -4,8 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, InputAdornment } from "@mui/material";
 import { AuthInput } from "./components/AuthInput";
 import { Email, Lock, Person } from "@mui/icons-material";
-import { useState } from "react";
 import { AuthButton } from "./components/AuthButton";
+import { useMutation } from "@tanstack/react-query";
+import { registerFn } from "./actions";
+import { useNavigate } from "react-router";
+import { useSnackbarStore } from "../../store/snackbarStore";
 
 export const Register = () => {
   const {
@@ -22,43 +25,28 @@ export const Register = () => {
     },
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { show } = useSnackbarStore();
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log("Form Data:", data);
+  const navigate = useNavigate();
 
-    setIsSubmitting(true);
+  const { mutate, isPending } = useMutation({
+    mutationFn: registerFn,
+    onSuccess: (data) => {
+      console.log("Register successful:", data);
+      show(
+        "Register Successful",
+        "You have registered successfully",
+        "success"
+      );
+      navigate("/login");
+    },
+    onError: (error) => {
+      show("Register Failed", error.message, "error");
+    },
+  });
 
-    if (data.password !== data.confirmPassword) {
-      console.error("Passwords do not match");
-      return;
-    }
-
-    const newUser = {
-      fullName: data.fullName,
-      email: data.email,
-      password: data.password,
-    };
-
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.error("Register failed:", errorData);
-      setIsSubmitting(false);
-      return;
-    }
-
-    const resData = await res.json();
-
-    console.log("Register successful:", resData);
-    setIsSubmitting(false);
+  const onSubmit = handleSubmit((data) => {
+    mutate(data);
   });
 
   return (
@@ -123,7 +111,7 @@ export const Register = () => {
         }}
       />
 
-      <AuthButton isSubmitting={isSubmitting} text="Create Account" />
+      <AuthButton isSubmitting={isPending} text="Create Account" />
     </Box>
   );
 };

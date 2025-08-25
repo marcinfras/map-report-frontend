@@ -6,23 +6,25 @@ import {
   type TextFieldProps,
 } from "@mui/material";
 import { useState } from "react";
-import { Controller, type Control } from "react-hook-form";
-import type { LoginFormValues, RegisterFormValues } from "../authSchema";
+import { Controller, type Control, type Path } from "react-hook-form";
 
-type AuthInputProps = Omit<TextFieldProps, "name" | "defaultValue"> & {
-  name: "email" | "password" | "fullName" | "confirmPassword";
-  control: Control<LoginFormValues | RegisterFormValues>;
+type AuthInputProps<T extends Record<string, unknown>> = Omit<
+  TextFieldProps,
+  "name" | "defaultValue"
+> & {
+  name: Path<T>;
+  control: Control<T>;
   label: string;
 };
 
-export const AuthInput = ({
+export const AuthInput = <T extends Record<string, unknown>>({
   name,
   control,
   label,
   type = "text",
   InputProps,
   ...rest
-}: AuthInputProps) => {
+}: AuthInputProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
 
