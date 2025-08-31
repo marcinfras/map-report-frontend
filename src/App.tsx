@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 import { Login } from "./pages/(auth)/Login";
 import { AuthLayout } from "./pages/(auth)/AuthLayout";
 import { GlobalSnackbar } from "./components/GlobalSnackbar";
+import { AppLayout } from "./components/AppLayout";
 
 const queryClient = new QueryClient();
 
@@ -13,10 +14,12 @@ export const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route element={<AuthLayout />}>
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
+          <Route element={<AppLayout />}>
+            <Route index element={<HomePage />} />
+            <Route element={<AuthLayout />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
