@@ -5,10 +5,8 @@ import { loginSchema, type LoginFormValues } from "./authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthInput } from "./components/AuthInput";
 import { AuthButton } from "./components/AuthButton";
-import { useMutation } from "@tanstack/react-query";
-import { loginFn } from "./actions";
-import { useNavigate } from "react-router";
-import { useSnackbarStore } from "../../store/snackbarStore";
+import { useOauthErrorHandler } from "../../hooks/useOauthErrorHandler";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login = () => {
   const {
@@ -23,24 +21,12 @@ export const Login = () => {
     },
   });
 
-  const { show } = useSnackbarStore();
+  useOauthErrorHandler();
 
-  const navigate = useNavigate();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: loginFn,
-    onSuccess: (data) => {
-      console.log("Login successful:", data);
-      show("Login Successful", "You have logged in successfully", "success");
-      navigate("/");
-    },
-    onError: (error) => {
-      show("Login Failed", error.message, "error");
-    },
-  });
+  const { login, isLoggingIn } = useAuth();
 
   const onSubmit = handleSubmit((data) => {
-    mutate(data);
+    login(data);
   });
 
   return (
@@ -75,7 +61,7 @@ export const Login = () => {
           ),
         }}
       />
-      <AuthButton isSubmitting={isPending} text="Sign In" />
+      <AuthButton isSubmitting={isLoggingIn} text="Sign In" />
     </Box>
   );
 };

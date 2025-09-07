@@ -7,6 +7,7 @@ export const loginFn = async (data: LoginFormValues) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(data),
     });
 
@@ -51,6 +52,50 @@ export const registerFn = async (data: RegisterFormValues) => {
     const resData = await res.json();
 
     return resData;
+  } catch (error) {
+    throw Error((error as Error).message);
+  }
+};
+
+export const logoutFn = async () => {
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw Error(errorData.error);
+    }
+
+    // const resData = await res.json();
+
+    // return resData;
+  } catch (error) {
+    throw Error((error as Error).message);
+  }
+};
+
+export const fetchCurrentUser = async () => {
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (res.status === 401) {
+      return null;
+    }
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw Error(errorData.error);
+    }
+
+    const resData = await res.json();
+
+    return resData.user;
   } catch (error) {
     throw Error((error as Error).message);
   }

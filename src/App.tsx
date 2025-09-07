@@ -6,6 +6,7 @@ import { Login } from "./pages/(auth)/Login";
 import { AuthLayout } from "./pages/(auth)/AuthLayout";
 import { GlobalSnackbar } from "./components/GlobalSnackbar";
 import { AppLayout } from "./components/AppLayout";
+import { GuestRoute } from "./components/GuestRoute";
 
 const queryClient = new QueryClient();
 
@@ -16,9 +17,11 @@ export const App = () => {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<HomePage />} />
-            <Route element={<AuthLayout />}>
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
+            <Route element={<GuestRoute />}>
+              <Route element={<AuthLayout />}>
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+              </Route>
             </Route>
           </Route>
         </Routes>

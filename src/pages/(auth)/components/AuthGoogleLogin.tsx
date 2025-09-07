@@ -2,6 +2,10 @@ import { Google } from "@mui/icons-material";
 import { Box, Button, Divider, Typography } from "@mui/material";
 
 export const AuthGoogleLogin = () => {
+  const handleGoogleLogin = () => {
+    window.location.href = `${import.meta.env.VITE_API_URL}/auth/google`;
+  };
+
   return (
     <Box mt={4}>
       <Divider>
@@ -16,6 +20,7 @@ export const AuthGoogleLogin = () => {
           variant="outlined"
           startIcon={<Google />}
           sx={{ textTransform: "none" }}
+          onClick={handleGoogleLogin}
         >
           Google
         </Button>
