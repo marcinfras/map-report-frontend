@@ -5,10 +5,7 @@ import { Box, InputAdornment } from "@mui/material";
 import { AuthInput } from "./components/AuthInput";
 import { Email, Lock, Person } from "@mui/icons-material";
 import { AuthButton } from "./components/AuthButton";
-import { useMutation } from "@tanstack/react-query";
-import { registerFn } from "./actions";
-import { useNavigate } from "react-router";
-import { useSnackbarStore } from "../../store/snackbarStore";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Register = () => {
   const {
@@ -25,28 +22,10 @@ export const Register = () => {
     },
   });
 
-  const { show } = useSnackbarStore();
-
-  const navigate = useNavigate();
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: registerFn,
-    onSuccess: (data) => {
-      console.log("Register successful:", data);
-      show(
-        "Register Successful",
-        "You have registered successfully",
-        "success"
-      );
-      navigate("/login");
-    },
-    onError: (error) => {
-      show("Register Failed", error.message, "error");
-    },
-  });
+  const { register, isRegistering } = useAuth();
 
   const onSubmit = handleSubmit((data) => {
-    mutate(data);
+    register(data);
   });
 
   return (
@@ -111,7 +90,7 @@ export const Register = () => {
         }}
       />
 
-      <AuthButton isSubmitting={isPending} text="Create Account" />
+      <AuthButton isSubmitting={isRegistering} text="Create Account" />
     </Box>
   );
 };

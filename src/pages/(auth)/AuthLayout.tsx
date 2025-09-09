@@ -17,8 +17,6 @@ import { AuthGoogleLogin } from "./components/AuthGoogleLogin";
 const AuthContainer = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
   display: "flex",
-  // alignItems: "center",
-  // justifyContent: "center",
   paddingTop: theme.spacing(5),
   paddingBottom: theme.spacing(3),
   paddingLeft: theme.spacing(2),
