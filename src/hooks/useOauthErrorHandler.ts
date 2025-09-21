@@ -47,7 +47,7 @@ export const useOauthErrorHandler = () => {
       newSearchParams.delete("success");
       setSearchParams(newSearchParams, { replace: true });
 
-      navigate("/", { replace: true });
+      navigate("/map", { replace: true });
     }
   }, [searchParams, show, navigate, setSearchParams]);
 };

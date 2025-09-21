@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { NavButtons } from "./NavButtons";
 import MapIcon from "@mui/icons-material/Map";
+import { Link } from "react-router";
 
 export const MainNav = () => {
   return (
@@ -13,7 +14,14 @@ export const MainNav = () => {
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Box display="flex" alignItems="center" gap={1}>
+        <Box
+          component={Link}
+          to={"/"}
+          display="flex"
+          alignItems="center"
+          gap={1}
+          sx={{ textDecoration: "none", color: "inherit" }}
+        >
           <MapIcon
             sx={{
               backgroundColor: "#1976d2",
