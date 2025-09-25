@@ -1,6 +1,13 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { NavButtons } from "./NavButtons";
 import MapIcon from "@mui/icons-material/Map";
+import { Link } from "react-router";
+import {
+  fontSize_18,
+  fontSize_20,
+  fontSize_30,
+  fontSize_32,
+} from "../helpers/sizes";
 
 export const MainNav = () => {
   return (
@@ -13,17 +20,27 @@ export const MainNav = () => {
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Box display="flex" alignItems="center" gap={1}>
+        <Box
+          component={Link}
+          to={"/"}
+          display="flex"
+          alignItems="center"
+          gap={1}
+          sx={{ textDecoration: "none", color: "inherit" }}
+        >
           <MapIcon
             sx={{
               backgroundColor: "#1976d2",
               color: "white",
               borderRadius: "12px",
-              fontSize: { sx: 30, sm: 32 },
+              fontSize: { sx: fontSize_30, sm: fontSize_32 },
               p: 0.5,
             }}
           />
-          <Typography variant="h6" fontSize={{ xs: 18, sm: 20 }}>
+          <Typography
+            variant="h6"
+            fontSize={{ xs: fontSize_18, sm: fontSize_20 }}
+          >
             MapReport
           </Typography>
         </Box>

@@ -7,6 +7,7 @@ import { AuthLayout } from "./pages/(auth)/AuthLayout";
 import { GlobalSnackbar } from "./components/GlobalSnackbar";
 import { AppLayout } from "./components/AppLayout";
 import { GuestRoute } from "./components/GuestRoute";
+import { Map } from "./pages/map/Map";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ export const App = () => {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<HomePage />} />
+            <Route path="map" element={<Map />} />
             <Route element={<GuestRoute />}>
               <Route element={<AuthLayout />}>
                 <Route path="login" element={<Login />} />

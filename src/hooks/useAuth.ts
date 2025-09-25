@@ -25,14 +25,15 @@ export const useAuth = () => {
     staleTime: 5 * 60 * 1000,
   });
 
+  const isAuthenticated = !!user && !isError;
+
   const loginMutation = useMutation({
     mutationFn: loginFn,
-    onSuccess: (data) => {
-      console.log("Login successful:", data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["auth", "user"] });
 
       show("Login Successful", "You have logged in successfully", "success");
-      navigate("/");
+      navigate("/map");
     },
     onError: (error) => {
       show("Login Failed", error.message, "error");
@@ -41,8 +42,7 @@ export const useAuth = () => {
 
   const registerMutation = useMutation({
     mutationFn: registerFn,
-    onSuccess: (data) => {
-      console.log("Register successful:", data);
+    onSuccess: () => {
       show(
         "Register Successful",
         "Your account has been created. Now you can log in.",
@@ -63,14 +63,12 @@ export const useAuth = () => {
 
       show("Logged out successfully", "You have been logged out.", "success");
 
-      navigate("/");
+      navigate("/login");
     },
     onError: (error: Error) => {
       show("Logout Failed", error.message, "error");
     },
   });
-
-  const isAuthenticated = !!user && !isError;
 
   return {
     user,

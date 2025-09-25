@@ -18,7 +18,7 @@ export const GuestRoute = () => {
     );
   }
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/map" replace />;
   }
 
   return <Outlet />;

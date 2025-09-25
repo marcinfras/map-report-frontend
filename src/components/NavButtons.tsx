@@ -11,7 +11,7 @@ export const NavButtons = () => {
     <Box display="flex" alignItems="center" gap={{ xs: 1, sm: 2 }}>
       <Button
         component={Link}
-        to="/"
+        to="/map"
         startIcon={<MapIcon />}
         sx={{ textTransform: "none" }}
       >
