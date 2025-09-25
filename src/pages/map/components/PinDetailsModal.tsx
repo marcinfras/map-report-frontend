@@ -108,7 +108,7 @@ export const PinDetailsModal = () => {
                 <Box
                   sx={{
                     width: "100%",
-                    height: 200,
+                    height: 250,
                     backgroundColor: "#f5f5f5",
                     borderRadius: 2,
                     overflow: "hidden",
@@ -120,7 +120,7 @@ export const PinDetailsModal = () => {
                     style={{
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: "contain",
                     }}
                   />
                 </Box>

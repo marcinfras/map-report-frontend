@@ -1,6 +1,7 @@
 import { Security } from "@mui/icons-material";
 import { Box, Typography, styled } from "@mui/material";
 import { useLocation } from "react-router";
+import { fontSize_32 } from "../../../helpers/sizes";
 
 const IconWrapper = styled(Box)(({ theme }) => ({
   width: 64,
@@ -16,7 +17,7 @@ const IconWrapper = styled(Box)(({ theme }) => ({
 
 const Icon = styled(Security)(({ theme }) => ({
   color: theme.palette.common.white,
-  fontSize: 32,
+  fontSize: fontSize_32,
 }));
 
 export const AuthHeader = () => {

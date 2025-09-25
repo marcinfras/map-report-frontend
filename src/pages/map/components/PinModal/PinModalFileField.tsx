@@ -2,6 +2,7 @@ import type { ControllerRenderProps, FieldError } from "react-hook-form";
 import type { PinFormData } from "../../pinSchemas";
 import { CloudUpload } from "@mui/icons-material";
 import { Box, FormLabel, Typography } from "@mui/material";
+import { fontSize_40 } from "../../../../helpers/sizes";
 
 export const PinModalFileField = ({
   field,
@@ -34,7 +35,7 @@ export const PinModalFileField = ({
           style={{ display: "none" }}
           id="file-upload"
         />
-        <CloudUpload sx={{ fontSize: 40, color: "#666", mb: 1 }} />
+        <CloudUpload sx={{ fontSize: fontSize_40, color: "#666", mb: 1 }} />
         <Typography variant="body2" color="textSecondary">
           {field.value ? field.value.name : "Click to upload or drag and drop"}
         </Typography>

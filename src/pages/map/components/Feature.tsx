@@ -1,4 +1,5 @@
 import { Typography, Box, Card, alpha } from "@mui/material";
+import { fontWeight_600 } from "../../../helpers/sizes";
 
 export const Feature = ({
   icon: Icon,
@@ -37,7 +38,11 @@ export const Feature = ({
         >
           <Icon sx={{ color: `${color}.main` }} />
         </Box>
-        <Typography variant="h6" component="h4" sx={{ fontWeight: 600, mb: 1 }}>
+        <Typography
+          variant="h6"
+          component="h4"
+          sx={{ fontWeight: fontWeight_600, mb: 1 }}
+        >
           {title}
         </Typography>
         <Typography variant="body2" sx={{ color: "text.secondary" }}>

@@ -46,7 +46,7 @@ export const MyMap = () => {
     queryFn: () => getPins(selectedPinType),
   });
 
-  const selectedPin = pins?.find((p) => p._id === selectedPinId);
+  const selectedPin = pins?.find((p) => p.id === selectedPinId);
 
   return (
     <Box sx={{ mb: 4 }}>
@@ -77,12 +77,12 @@ export const MyMap = () => {
             )}
             {pins?.map((pin) => (
               <Marker
-                key={pin._id}
+                key={pin.id}
                 position={[pin.coordinates.lat, pin.coordinates.lng]}
                 icon={createCustomIcon(pin.type, theme)}
                 eventHandlers={{
                   click: () => {
-                    setSelectedPinId(pin._id);
+                    setSelectedPinId(pin.id);
                     setIsPinDetailsModalOpen(true);
                   },
                 }}

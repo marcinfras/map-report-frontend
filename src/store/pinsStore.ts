@@ -8,7 +8,7 @@ export enum PinType {
 }
 
 export type PinDetails = {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   type: PinType.Damage | PinType.Change | PinType.Idea;
@@ -26,7 +26,7 @@ export type PinDetails = {
 };
 
 export type Pin = {
-  _id: string;
+  id: string;
   type: PinType.Damage | PinType.Change | PinType.Idea;
   coordinates: {
     lat: number;

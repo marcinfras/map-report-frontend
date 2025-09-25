@@ -27,7 +27,9 @@ export const getPins = async (type?: PinType) => {
     if (!res.ok) {
       throw new Error("Failed to fetch pins");
     }
+
     const resData: Pin[] = await res.json();
+
     return resData;
   } catch (error) {
     throw new Error((error as Error).message);
