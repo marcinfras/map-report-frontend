@@ -8,6 +8,7 @@ import { GlobalSnackbar } from "./components/GlobalSnackbar";
 import { AppLayout } from "./components/AppLayout";
 import { GuestRoute } from "./components/GuestRoute";
 import { Map } from "./pages/map/Map";
+import { PinDetailsPage } from "./pages/map/pins/PinDetailsPage";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +19,10 @@ export const App = () => {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="map" element={<Map />} />
+            <Route path="map">
+              <Route index element={<Map />} />
+              <Route path="pins/:id" element={<PinDetailsPage />} />
+            </Route>
             <Route element={<GuestRoute />}>
               <Route element={<AuthLayout />}>
                 <Route path="login" element={<Login />} />

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { PinFormType } from "../pages/map/pinSchemas";
 
 export enum PinType {
   All = "all",
@@ -11,7 +12,7 @@ export type PinDetails = {
   id: string;
   title: string;
   description: string;
-  type: PinType.Damage | PinType.Change | PinType.Idea;
+  type: PinFormType.Damage | PinFormType.Change | PinFormType.Idea;
   coordinates: {
     lat: number;
     lng: number;

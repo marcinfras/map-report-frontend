@@ -9,7 +9,6 @@ import {
   Chip,
   CircularProgress,
 } from "@mui/material";
-import { Build, Lightbulb, ReportProblem } from "@mui/icons-material";
 import { usePinsStore } from "../../../store/pinsStore";
 import { useSelectedPinId } from "../../../hooks/useSelectedPinId";
 import { useQuery } from "@tanstack/react-query";
@@ -17,19 +16,8 @@ import { getPinById } from "../actions";
 import { useSnackbarStore } from "../../../store/snackbarStore";
 import { useEffect } from "react";
 import { formatDate } from "../../../helpers/helpers";
-
-const getTypeConfig = (type: string) => {
-  const configs = {
-    damage: {
-      color: "error",
-      label: "Damage Report",
-      icon: <ReportProblem />,
-    },
-    change: { color: "warning", label: "Change Request", icon: <Build /> },
-    idea: { color: "success", label: "Community Idea", icon: <Lightbulb /> },
-  };
-  return configs[type as keyof typeof configs] || configs.damage;
-};
+import { Link } from "react-router";
+import { getTypeConfig } from "../../../helpers/getTypeConfig";
 
 export const PinDetailsModal = () => {
   const { pinDetailsModalOpen, setIsPinDetailsModalOpen } = usePinsStore();
@@ -151,7 +139,12 @@ export const PinDetailsModal = () => {
             <Button variant="outlined" fullWidth onClick={onClose}>
               Close
             </Button>
-            <Button variant="contained" fullWidth>
+            <Button
+              component={Link}
+              to={`pins/${pin.id}`}
+              variant="contained"
+              fullWidth
+            >
               Details
             </Button>
           </DialogActions>
