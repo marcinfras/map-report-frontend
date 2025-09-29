@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSnackbarStore } from "../store/snackbarStore";
-import { createPin, updatePin } from "../pages/map/actions";
+import { createPin, deletePin, updatePin } from "../pages/map/actions";
 
 export const usePinMutations = (onSuccessCallback?: () => void) => {
   const queryClient = useQueryClient();
@@ -27,7 +27,6 @@ export const usePinMutations = (onSuccessCallback?: () => void) => {
     mutationFn: ({ id, data }: { id: string; data: FormData }) =>
       updatePin(id, data),
     onSuccess: (data) => {
-      console.log(data);
       queryClient.setQueryData(["pin", data._id], data.pin);
       queryClient.invalidateQueries({ queryKey: ["pin", data.pin._id] });
       handleSuccess("Pin updated successfully");
@@ -35,5 +34,14 @@ export const usePinMutations = (onSuccessCallback?: () => void) => {
     onError: handleError,
   });
 
-  return { createMutate, updateMutate };
+  const deleteMutate = useMutation({
+    mutationFn: (id: string) => deletePin(id),
+    onSuccess: (data) => {
+      queryClient.setQueryData(["pin", data._id], null);
+      queryClient.invalidateQueries({ queryKey: ["pin", data.pin._id] });
+      handleSuccess("Pin deleted successfully");
+    },
+  });
+
+  return { createMutate, updateMutate, deleteMutate };
 };

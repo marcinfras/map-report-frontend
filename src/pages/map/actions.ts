@@ -88,7 +88,29 @@ export const updatePin = async (id: string, data: FormData) => {
 
     const resData = await res.json();
 
-    console.log(resData);
+    return resData;
+  } catch (error) {
+    throw new Error((error as Error).message);
+  }
+};
+
+export const deletePin = async (id: string) => {
+  try {
+    if (!id) {
+      throw new Error("Pin ID is required");
+    }
+
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/pins/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to delete pin");
+    }
+
+    const resData = await res.json();
+
     return resData;
   } catch (error) {
     throw new Error((error as Error).message);

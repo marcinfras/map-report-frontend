@@ -2,9 +2,9 @@ import {
   Box,
   Chip,
   Typography,
-  Button,
   Divider,
   CircularProgress,
+  type ChipOwnProps,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
@@ -12,13 +12,27 @@ import { getPinById } from "../actions";
 import { getTypeConfig } from "../../../helpers/getTypeConfig";
 import { formatDate } from "../../../helpers/helpers";
 import { useAuth } from "../../../hooks/useAuth";
-import { usePinsStore } from "../../../store/pinsStore";
 import { PinModal } from "../components/PinModal";
+import { ConfirmDeletePinDialog } from "./components/ConfirmDeletePinDialog";
+import { PinDetailsPageEditButtons } from "./components/PinDetailsPageEditButtons";
+
+const getStatusConfig = (
+  status: "active" | "resolved"
+): {
+  label: string;
+  color: ChipOwnProps["color"];
+  variant: ChipOwnProps["variant"];
+} => {
+  return {
+    label: status === "active" ? "Active" : "Resolved",
+    color: status === "active" ? "success" : "default",
+    variant: status === "active" ? "filled" : "outlined",
+  };
+};
 
 export const PinDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
-  const { setIsAddPinModalOpen } = usePinsStore();
 
   const {
     data: pin,
@@ -75,6 +89,13 @@ export const PinDetailsPage = () => {
         <Typography variant="h4" fontWeight="bold">
           {pin.title}
         </Typography>
+        <Chip
+          label={getStatusConfig(pin.status).label}
+          color={getStatusConfig(pin.status).color}
+          variant={getStatusConfig(pin.status).variant}
+          size="small"
+          sx={{ ml: { sm: "auto" } }}
+        />
       </Box>
       {pin.image && (
         <Box
@@ -115,16 +136,9 @@ export const PinDetailsPage = () => {
       </Box>
 
       {pin.author._id === user?.profile._id && (
-        <Box mt={3}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setIsAddPinModalOpen(true)}
-          >
-            Edit Pin
-          </Button>
-        </Box>
+        <PinDetailsPageEditButtons pin={pin} />
       )}
+      <ConfirmDeletePinDialog id={pin.id} />
       <PinModal
         pinToEdit={{
           id: pin.id,
