@@ -4,31 +4,16 @@ import {
   Typography,
   Divider,
   CircularProgress,
-  type ChipOwnProps,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { getPinById } from "../actions";
 import { getTypeConfig } from "../../../helpers/getTypeConfig";
-import { formatDate } from "../../../helpers/helpers";
+import { formatDate, getStatusConfig } from "../../../helpers/helpers";
 import { useAuth } from "../../../hooks/useAuth";
 import { PinModal } from "../components/PinModal";
 import { ConfirmDeletePinDialog } from "./components/ConfirmDeletePinDialog";
 import { PinDetailsPageEditButtons } from "./components/PinDetailsPageEditButtons";
-
-const getStatusConfig = (
-  status: "active" | "resolved"
-): {
-  label: string;
-  color: ChipOwnProps["color"];
-  variant: ChipOwnProps["variant"];
-} => {
-  return {
-    label: status === "active" ? "Active" : "Resolved",
-    color: status === "active" ? "success" : "default",
-    variant: status === "active" ? "filled" : "outlined",
-  };
-};
 
 export const PinDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,7 +21,7 @@ export const PinDetailsPage = () => {
 
   const {
     data: pin,
-    isLoading,
+    isFetching,
     error,
   } = useQuery({
     queryKey: ["pin", id],
@@ -44,7 +29,7 @@ export const PinDetailsPage = () => {
     enabled: !!id,
   });
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <Box
         display="flex"
@@ -138,7 +123,7 @@ export const PinDetailsPage = () => {
       {pin.author._id === user?.profile._id && (
         <PinDetailsPageEditButtons pin={pin} />
       )}
-      <ConfirmDeletePinDialog id={pin.id} />
+      <ConfirmDeletePinDialog id={pin.id} redirect="/map" />
       <PinModal
         pinToEdit={{
           id: pin.id,

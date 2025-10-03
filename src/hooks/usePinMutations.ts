@@ -39,6 +39,7 @@ export const usePinMutations = (onSuccessCallback?: () => void) => {
     onSuccess: (data) => {
       queryClient.setQueryData(["pin", data._id], null);
       queryClient.invalidateQueries({ queryKey: ["pin", data.pin._id] });
+      queryClient.invalidateQueries({ queryKey: ["myPins"] });
       handleSuccess("Pin deleted successfully");
     },
   });

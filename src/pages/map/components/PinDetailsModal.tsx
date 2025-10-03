@@ -7,7 +7,6 @@ import {
   Typography,
   Box,
   Chip,
-  CircularProgress,
 } from "@mui/material";
 import { usePinsStore } from "../../../store/pinsStore";
 import { useSelectedPinId } from "../../../hooks/useSelectedPinId";
@@ -18,6 +17,7 @@ import { useEffect } from "react";
 import { formatDate } from "../../../helpers/helpers";
 import { Link } from "react-router";
 import { getTypeConfig } from "../../../helpers/getTypeConfig";
+import { Loader } from "../../../components/Loader";
 
 export const PinDetailsModal = () => {
   const { pinDetailsModalOpen, setIsPinDetailsModalOpen } = usePinsStore();
@@ -60,16 +60,7 @@ export const PinDetailsModal = () => {
       maxWidth="sm"
       fullWidth
     >
-      {isPending && !pin && (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="200px"
-        >
-          <CircularProgress />
-        </Box>
-      )}
+      {isPending && !pin && <Loader />}
       {pin && !isPending && (
         <>
           <DialogTitle>

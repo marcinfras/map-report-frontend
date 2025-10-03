@@ -9,6 +9,9 @@ import { AppLayout } from "./components/AppLayout";
 import { GuestRoute } from "./components/GuestRoute";
 import { Map } from "./pages/map/Map";
 import { PinDetailsPage } from "./pages/map/pins/PinDetailsPage";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProfilePage } from "./pages/profile/ProfilePage";
+import { MyPinsPage } from "./pages/profile/mypins/MyPinsPage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +26,14 @@ export const App = () => {
               <Route index element={<Map />} />
               <Route path="pins/:id" element={<PinDetailsPage />} />
             </Route>
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="profile">
+                <Route index element={<ProfilePage />} />
+                <Route path="mypins" element={<MyPinsPage />} />
+              </Route>
+            </Route>
+
             <Route element={<GuestRoute />}>
               <Route element={<AuthLayout />}>
                 <Route path="login" element={<Login />} />

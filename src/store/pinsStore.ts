@@ -8,6 +8,11 @@ export enum PinType {
   Idea = "idea",
 }
 
+export enum PinStatus {
+  Active = "active",
+  Resolved = "resolved",
+}
+
 export type PinDetails = {
   id: string;
   title: string;
@@ -22,7 +27,22 @@ export type PinDetails = {
     _id: string;
     fullName: string;
   };
-  status: "active" | "resolved";
+  status: PinStatus.Active | PinStatus.Resolved;
+  createdAt: string;
+};
+
+export type MyPin = {
+  id: string;
+  title: string;
+  description: string;
+  type: PinType.Damage | PinType.Change | PinType.Idea;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  image?: string;
+  author: string;
+  status: PinStatus.Active | PinStatus.Resolved;
   createdAt: string;
 };
 
