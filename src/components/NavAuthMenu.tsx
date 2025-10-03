@@ -1,4 +1,4 @@
-import { Logout, Person } from "@mui/icons-material";
+import { LocationPin, Logout, Person } from "@mui/icons-material";
 import {
   Avatar,
   Button,
@@ -71,6 +71,17 @@ export const NavAuthMenu = ({
             <Person fontSize="small" />
           </ListItemIcon>
           <ListItemText>Profile</ListItemText>
+        </MenuItem>
+
+        <MenuItem
+          onClick={handleMenuClose}
+          component={Link}
+          to="/profile/mypins"
+        >
+          <ListItemIcon>
+            <LocationPin fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>My Pins</ListItemText>
         </MenuItem>
 
         <MenuItem onClick={handleLogout} disabled={isLoggingOut}>
