@@ -1,3 +1,4 @@
+import type { User } from "../../hooks/useAuth";
 import type { LoginFormValues, RegisterFormValues } from "./authSchema";
 
 export const loginFn = async (data: LoginFormValues) => {
@@ -94,8 +95,7 @@ export const fetchCurrentUser = async () => {
     }
 
     const resData = await res.json();
-
-    return resData.user;
+    return resData.user as User;
   } catch (error) {
     throw Error((error as Error).message);
   }
