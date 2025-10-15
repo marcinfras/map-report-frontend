@@ -95,6 +95,7 @@ export const fetchCurrentUser = async () => {
     }
 
     const resData = await res.json();
+
     return resData.user as User;
   } catch (error) {
     throw Error((error as Error).message);

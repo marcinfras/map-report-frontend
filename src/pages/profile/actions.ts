@@ -5,13 +5,26 @@ export const getMyPins = async ({
   type,
   status,
   sort,
+  page,
+  limit,
 }: {
   type?: string;
   status?: string;
   sort?: "asc" | "desc";
+  page?: number;
+  limit?: number;
 }) => {
   try {
     const params = new URLSearchParams();
+
+    if (page && page !== 1) {
+      params.append("page", page.toString());
+    }
+
+    if (limit) {
+      params.append("limit", limit.toString());
+    }
+
     if (type && type !== "all") {
       params.append("type", type);
     }
@@ -33,7 +46,10 @@ export const getMyPins = async ({
 
     const resData = await res.json();
 
-    return resData as MyPin[];
+    return resData as {
+      pins: MyPin[];
+      pagination: { total: number; totalPages: number };
+    };
   } catch (error) {
     throw new Error((error as Error).message);
   }

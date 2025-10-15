@@ -1,17 +1,22 @@
 import { useSearchParams } from "react-router";
 import { PinStatus, PinType } from "../store/pinsStore";
 import { isValidPinStatus, isValidPinType } from "../helpers/helpers";
+import { usePagination } from "./usePagination";
 
 export const useMyPinsFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { resetToFirstPage } = usePagination();
 
   const rawType = searchParams.get("type");
   const typeFilter: PinType =
     rawType && isValidPinType(rawType) ? rawType : PinType.All;
 
   const handleTypeChange = (value: PinType) => {
-    searchParams.set("type", value);
-    setSearchParams(searchParams);
+    const params = resetToFirstPage(
+      new URLSearchParams(searchParams.toString())
+    );
+    params.set("type", value);
+    setSearchParams(params);
   };
 
   const rawStatus = searchParams.get("status");
@@ -22,13 +27,19 @@ export const useMyPinsFilters = () => {
   const sortOrder: "asc" | "desc" = rawSort === "asc" ? "asc" : "desc";
 
   const handleStatusChange = (value: PinStatus | "all") => {
-    searchParams.set("status", value);
-    setSearchParams(searchParams);
+    const params = resetToFirstPage(
+      new URLSearchParams(searchParams.toString())
+    );
+    params.set("status", value);
+    setSearchParams(params);
   };
 
   const handleSortChange = (value: "asc" | "desc") => {
-    searchParams.set("sort", value);
-    setSearchParams(searchParams);
+    const params = resetToFirstPage(
+      new URLSearchParams(searchParams.toString())
+    );
+    params.set("sort", value);
+    setSearchParams(params);
   };
 
   return {

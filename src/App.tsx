@@ -12,6 +12,8 @@ import { PinDetailsPage } from "./pages/map/pins/PinDetailsPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ProfilePage } from "./pages/profile/ProfilePage";
 import { MyPinsPage } from "./pages/profile/mypins/MyPinsPage";
+import { AdminRoute } from "./components/AdminRoute";
+import { AdminPage } from "./pages/profile/admin/AdminPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,14 @@ export const App = () => {
               <Route path="profile">
                 <Route index element={<ProfilePage />} />
                 <Route path="mypins" element={<MyPinsPage />} />
+                <Route
+                  path="admin"
+                  element={
+                    <AdminRoute>
+                      <AdminPage />
+                    </AdminRoute>
+                  }
+                />
               </Route>
             </Route>
 

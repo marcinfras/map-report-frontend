@@ -1,17 +1,20 @@
 import { Avatar, Box, Divider, ListItem, ListItemAvatar } from "@mui/material";
 
-import { type MyPin } from "../../../../store/pinsStore";
+import { type AdminPin, type MyPin } from "../../../../store/pinsStore";
 import { PinItemChips } from "./PinItemChips";
 import { PinItemText } from "./PinItemText";
 import { PinItemButtons } from "./PinItemButtons";
 
 interface MyPinItemProps {
-  pin: MyPin;
+  pin: MyPin | AdminPin;
   isLast: boolean;
   setDeletedPinId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const PinItem = ({ pin, isLast, setDeletedPinId }: MyPinItemProps) => {
+  const author =
+    typeof pin.author !== "string" ? pin.author.fullName : undefined;
+
   return (
     <Box key={pin.id}>
       <ListItem
@@ -21,8 +24,8 @@ export const PinItem = ({ pin, isLast, setDeletedPinId }: MyPinItemProps) => {
           px: 2,
           flexDirection: { xs: "column", sm: "row" },
           alignItems: { xs: "flex-start", sm: "center" },
-          minHeight: { xs: 240, sm: 150 },
-          maxHeight: { xs: 240, sm: 150 },
+          minHeight: { xs: author ? 260 : 240, sm: author ? 170 : 150 },
+          maxHeight: { xs: author ? 260 : 240, sm: author ? 170 : 150 },
           transition: "background-color 0.2s",
           "&:hover": { backgroundColor: "action.hover" },
         }}
@@ -60,6 +63,7 @@ export const PinItem = ({ pin, isLast, setDeletedPinId }: MyPinItemProps) => {
             createdAt={pin.createdAt}
             title={pin.title}
             description={pin.description}
+            author={author}
           />
         </Box>
 

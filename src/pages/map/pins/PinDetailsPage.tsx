@@ -120,9 +120,9 @@ export const PinDetailsPage = () => {
         </Typography>
       </Box>
 
-      {pin.author._id === user?.profile._id && (
+      {pin.author.id === user?.profile.id || user?.profile.role === "admin" ? (
         <PinDetailsPageEditButtons pin={pin} />
-      )}
+      ) : null}
       <ConfirmDeletePinDialog id={pin.id} redirect="/map" />
       <PinModal
         pinToEdit={{

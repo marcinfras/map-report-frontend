@@ -24,7 +24,7 @@ export type PinDetails = {
   };
   image?: string;
   author: {
-    _id: string;
+    id: string;
     fullName: string;
   };
   status: PinStatus.Active | PinStatus.Resolved;
@@ -42,6 +42,23 @@ export type MyPin = {
   };
   image?: string;
   author: string;
+  status: PinStatus.Active | PinStatus.Resolved;
+  createdAt: string;
+};
+
+export type AdminPin = {
+  id: string;
+  title: string;
+  description: string;
+  type: PinType.Damage | PinType.Change | PinType.Idea;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  image?: string;
+  author: {
+    fullName: string;
+  };
   status: PinStatus.Active | PinStatus.Resolved;
   createdAt: string;
 };

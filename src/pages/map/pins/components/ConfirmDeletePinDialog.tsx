@@ -13,9 +13,11 @@ import { useNavigate } from "react-router";
 export const ConfirmDeletePinDialog = ({
   id,
   redirect,
+  resetToFirstPage,
 }: {
   id: string;
   redirect?: string;
+  resetToFirstPage?: (params?: URLSearchParams | undefined) => URLSearchParams;
 }) => {
   const { deletePinDialogOpen, setIsDeletePinDialogOpen } = usePinsStore();
   const navigate = useNavigate();
@@ -25,7 +27,10 @@ export const ConfirmDeletePinDialog = ({
       navigate(redirect, {
         replace: true,
       });
-      return;
+    }
+    if (resetToFirstPage) {
+      const params = resetToFirstPage();
+      navigate({ search: params.toString() });
     }
   });
 

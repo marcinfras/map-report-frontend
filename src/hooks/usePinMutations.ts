@@ -27,8 +27,8 @@ export const usePinMutations = (onSuccessCallback?: () => void) => {
     mutationFn: ({ id, data }: { id: string; data: FormData }) =>
       updatePin(id, data),
     onSuccess: (data) => {
-      queryClient.setQueryData(["pin", data._id], data.pin);
-      queryClient.invalidateQueries({ queryKey: ["pin", data.pin._id] });
+      queryClient.setQueryData(["pin", data.id], data.pin);
+      queryClient.invalidateQueries({ queryKey: ["pin", data.pin.id] });
       handleSuccess("Pin updated successfully");
     },
     onError: handleError,
@@ -37,9 +37,10 @@ export const usePinMutations = (onSuccessCallback?: () => void) => {
   const deleteMutate = useMutation({
     mutationFn: (id: string) => deletePin(id),
     onSuccess: (data) => {
-      queryClient.setQueryData(["pin", data._id], null);
-      queryClient.invalidateQueries({ queryKey: ["pin", data.pin._id] });
+      queryClient.setQueryData(["pin", data.id], null);
+      queryClient.invalidateQueries({ queryKey: ["pin", data.pin.id] });
       queryClient.invalidateQueries({ queryKey: ["myPins"] });
+      queryClient.invalidateQueries({ queryKey: ["adminPins"] });
       handleSuccess("Pin deleted successfully");
     },
   });
