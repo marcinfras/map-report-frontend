@@ -9,11 +9,11 @@ import {
 import { useSnackbarStore } from "../store/snackbarStore";
 
 export interface User {
-  _id: string;
+  id: string;
   email: string;
   userType: "standard" | "thirdParty";
   profile: {
-    _id: string;
+    id: string;
     fullName: string;
     avatar?: string;
     role: "user" | "admin";

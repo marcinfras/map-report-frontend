@@ -9,22 +9,14 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router";
+import type { User } from "../hooks/useAuth";
 
 export const NavAuthMenu = ({
   user,
   logout,
   isLoggingOut,
 }: {
-  user: {
-    _id: string;
-    email: string;
-    profile: {
-      _id: string;
-      fullName: string;
-      role: string;
-      avatar?: string;
-    };
-  };
+  user: User;
   logout: () => void;
   isLoggingOut: boolean;
 }) => {

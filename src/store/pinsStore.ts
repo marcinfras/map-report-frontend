@@ -24,7 +24,7 @@ export type PinDetails = {
   };
   image?: string;
   author: {
-    _id: string;
+    id: string;
     fullName: string;
   };
   status: PinStatus.Active | PinStatus.Resolved;

@@ -120,7 +120,7 @@ export const PinDetailsPage = () => {
         </Typography>
       </Box>
 
-      {pin.author._id === user?.profile._id && (
+      {pin.author.id === user?.profile.id && (
         <PinDetailsPageEditButtons pin={pin} />
       )}
       <ConfirmDeletePinDialog id={pin.id} redirect="/map" />
