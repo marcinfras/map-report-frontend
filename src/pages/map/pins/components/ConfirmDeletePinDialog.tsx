@@ -10,14 +10,23 @@ import { usePinsStore } from "../../../../store/pinsStore";
 import { usePinMutations } from "../../../../hooks/usePinMutations";
 import { useNavigate } from "react-router";
 
-export const ConfirmDeletePinDialog = ({ id }: { id: string }) => {
+export const ConfirmDeletePinDialog = ({
+  id,
+  redirect,
+}: {
+  id: string;
+  redirect?: string;
+}) => {
   const { deletePinDialogOpen, setIsDeletePinDialogOpen } = usePinsStore();
   const navigate = useNavigate();
   const { deleteMutate } = usePinMutations(() => {
     onClose();
-    navigate("/map", {
-      replace: true,
-    });
+    if (redirect) {
+      navigate(redirect, {
+        replace: true,
+      });
+      return;
+    }
   });
 
   const onClose = () => {

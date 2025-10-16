@@ -1,6 +1,6 @@
 import L from "leaflet";
-import { PinType } from "../store/pinsStore";
-import type { Theme } from "@mui/material";
+import { PinStatus, PinType } from "../store/pinsStore";
+import type { ChipOwnProps, Theme } from "@mui/material";
 
 export const createCustomIcon = (type: string, theme: Theme) => {
   const colors = {
@@ -23,6 +23,24 @@ export const isValidPinType = (value: string): value is PinType => {
   return Object.values(PinType).includes(value as PinType);
 };
 
+export const isValidPinStatus = (value: string): value is PinStatus => {
+  return Object.values(PinStatus).includes(value as PinStatus);
+};
+
 export const formatDate = (value: string) => {
   return new Intl.DateTimeFormat("en-GB").format(new Date(value));
+};
+
+export const getStatusConfig = (
+  status: PinStatus
+): {
+  label: string;
+  color: ChipOwnProps["color"];
+  variant: ChipOwnProps["variant"];
+} => {
+  return {
+    label: status === PinStatus.Active ? "Active" : "Resolved",
+    color: status === PinStatus.Active ? "success" : "default",
+    variant: status === PinStatus.Active ? "filled" : "outlined",
+  };
 };
