@@ -1,7 +1,7 @@
 import { Box, Chip } from "@mui/material";
-import { getTypeConfig } from "../../../../helpers/getTypeConfig";
-import { getStatusConfig } from "../../../../helpers/helpers";
-import type { PinStatus, PinType } from "../../../../store/pinsStore";
+import { getTypeConfig } from "@helpers/getTypeConfig";
+import { getStatusConfig } from "@helpers/helpers";
+import type { PinStatus, PinType } from "@store/pinsStore";
 
 export const PinItemChips = ({
   type,

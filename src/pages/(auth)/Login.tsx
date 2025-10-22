@@ -5,8 +5,8 @@ import { loginSchema, type LoginFormValues } from "./authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthInput } from "./components/AuthInput";
 import { AuthButton } from "./components/AuthButton";
-import { useOauthErrorHandler } from "../../hooks/useOauthErrorHandler";
-import { useAuth } from "../../hooks/useAuth";
+import { useOauthErrorHandler } from "@hooks/useOauthErrorHandler";
+import { useAuth } from "@hooks/useAuth";
 
 export const Login = () => {
   const {

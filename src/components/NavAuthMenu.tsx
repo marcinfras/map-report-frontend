@@ -1,4 +1,9 @@
-import { LocationPin, Logout, Person } from "@mui/icons-material";
+import {
+  AdminPanelSettings,
+  LocationPin,
+  Logout,
+  Person,
+} from "@mui/icons-material";
 import {
   Avatar,
   Button,
@@ -9,7 +14,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router";
-import type { User } from "../hooks/useAuth";
+import type { User } from "@hooks/useAuth";
 
 export const NavAuthMenu = ({
   user,
@@ -75,6 +80,19 @@ export const NavAuthMenu = ({
           </ListItemIcon>
           <ListItemText>My Pins</ListItemText>
         </MenuItem>
+
+        {user.profile.role === "admin" && (
+          <MenuItem
+            onClick={handleMenuClose}
+            component={Link}
+            to="/profile/admin"
+          >
+            <ListItemIcon>
+              <AdminPanelSettings fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Admin</ListItemText>
+          </MenuItem>
+        )}
 
         <MenuItem onClick={handleLogout} disabled={isLoggingOut}>
           <ListItemIcon>

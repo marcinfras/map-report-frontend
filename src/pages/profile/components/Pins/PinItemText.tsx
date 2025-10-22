@@ -1,24 +1,38 @@
-import { ListItemText, Typography } from "@mui/material";
-import { formatDate } from "../../../../helpers/helpers";
+import { Box, ListItemText, Typography } from "@mui/material";
+import { formatDate } from "@helpers/helpers";
 
 export const PinItemText = ({
   createdAt,
   title,
   description,
+  author,
 }: {
   createdAt: string;
   title: string;
   description: string;
+  author?: string;
 }) => {
   return (
     <>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ mb: 0.5, whiteSpace: "nowrap" }}
-      >
-        {formatDate(createdAt)}
-      </Typography>
+      <Box mb={0.5}>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ whiteSpace: "nowrap" }}
+        >
+          {formatDate(createdAt)}
+        </Typography>
+        {author && (
+          <Typography
+            component="p"
+            variant="caption"
+            color="text.secondary"
+            sx={{ whiteSpace: "nowrap" }}
+          >
+            {author}
+          </Typography>
+        )}
+      </Box>
 
       <ListItemText
         primary={

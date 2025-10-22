@@ -6,16 +6,18 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import { usePinsStore } from "../../../../store/pinsStore";
-import { usePinMutations } from "../../../../hooks/usePinMutations";
+import { usePinsStore } from "@store/pinsStore";
+import { usePinMutations } from "@hooks/usePinMutations";
 import { useNavigate } from "react-router";
 
 export const ConfirmDeletePinDialog = ({
   id,
   redirect,
+  resetToFirstPage,
 }: {
   id: string;
   redirect?: string;
+  resetToFirstPage?: (params?: URLSearchParams | undefined) => URLSearchParams;
 }) => {
   const { deletePinDialogOpen, setIsDeletePinDialogOpen } = usePinsStore();
   const navigate = useNavigate();
@@ -25,7 +27,10 @@ export const ConfirmDeletePinDialog = ({
       navigate(redirect, {
         replace: true,
       });
-      return;
+    }
+    if (resetToFirstPage) {
+      const params = resetToFirstPage();
+      navigate({ search: params.toString() });
     }
   });
 

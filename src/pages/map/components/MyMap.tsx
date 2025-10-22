@@ -6,12 +6,12 @@ import {
   useMap,
 } from "react-leaflet";
 import { Box, Card, useTheme } from "@mui/material";
-import { createCustomIcon } from "../../../helpers/helpers";
-import { usePinsStore } from "../../../store/pinsStore";
+import { createCustomIcon } from "@helpers/helpers";
+import { usePinsStore } from "@store/pinsStore";
 import { useQuery } from "@tanstack/react-query";
-import { useSelectedPinType } from "../../../hooks/useSelectedPinType";
+import { useSelectedPinType } from "@hooks/useSelectedPinType";
 import { getPins } from "../actions";
-import { useSelectedPinId } from "../../../hooks/useSelectedPinId";
+import { useSelectedPinId } from "@hooks/useSelectedPinId";
 
 const MapClickHandler = () => {
   const { setIsAddPinModalOpen, setNewPinCoords } = usePinsStore();

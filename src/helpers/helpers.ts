@@ -1,6 +1,10 @@
 import L from "leaflet";
-import { PinStatus, PinType } from "../store/pinsStore";
+import { PinStatus, PinType } from "@store/pinsStore";
 import type { ChipOwnProps, Theme } from "@mui/material";
+import { SearchField, SearchOperator } from "@hooks/useAdminPinsFilters";
+import type { PinStatusFilter } from "@hooks/useMyPinsFilters";
+
+export const PINS_PER_PAGE = 5;
 
 export const createCustomIcon = (type: string, theme: Theme) => {
   const colors = {
@@ -23,8 +27,18 @@ export const isValidPinType = (value: string): value is PinType => {
   return Object.values(PinType).includes(value as PinType);
 };
 
-export const isValidPinStatus = (value: string): value is PinStatus => {
+export const isValidPinStatus = (value: string): value is PinStatusFilter => {
   return Object.values(PinStatus).includes(value as PinStatus);
+};
+
+export const isValidSearchField = (value: string): value is SearchField => {
+  return Object.values(SearchField).includes(value as SearchField);
+};
+
+export const isValidSearchOperator = (
+  value: string
+): value is SearchOperator => {
+  return Object.values(SearchOperator).includes(value as SearchOperator);
 };
 
 export const formatDate = (value: string) => {

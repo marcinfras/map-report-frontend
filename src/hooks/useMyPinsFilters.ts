@@ -1,34 +1,57 @@
 import { useSearchParams } from "react-router";
-import { PinStatus, PinType } from "../store/pinsStore";
-import { isValidPinStatus, isValidPinType } from "../helpers/helpers";
+import { PinStatus, PinType } from "@store/pinsStore";
+import { isValidPinStatus, isValidPinType } from "@helpers/helpers";
+import { usePagination } from "./usePagination";
+
+export enum PinsSortOrder {
+  Asc = "asc",
+  Desc = "desc",
+}
+
+export enum PinStatusFilter {
+  All = "all",
+  Active = PinStatus.Active,
+  Resolved = PinStatus.Resolved,
+}
 
 export const useMyPinsFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { resetToFirstPage } = usePagination();
 
   const rawType = searchParams.get("type");
   const typeFilter: PinType =
     rawType && isValidPinType(rawType) ? rawType : PinType.All;
 
   const handleTypeChange = (value: PinType) => {
-    searchParams.set("type", value);
-    setSearchParams(searchParams);
+    const params = resetToFirstPage(
+      new URLSearchParams(searchParams.toString())
+    );
+    params.set("type", value);
+    setSearchParams(params);
   };
 
   const rawStatus = searchParams.get("status");
-  const statusFilter: PinStatus | "all" =
-    rawStatus && isValidPinStatus(rawStatus) ? rawStatus : "all";
+  const statusFilter: PinStatusFilter =
+    rawStatus && isValidPinStatus(rawStatus) ? rawStatus : PinStatusFilter.All;
 
   const rawSort = searchParams.get("sort");
-  const sortOrder: "asc" | "desc" = rawSort === "asc" ? "asc" : "desc";
+  const sortOrder: PinsSortOrder =
+    rawSort === PinsSortOrder.Asc ? PinsSortOrder.Asc : PinsSortOrder.Desc;
 
-  const handleStatusChange = (value: PinStatus | "all") => {
-    searchParams.set("status", value);
-    setSearchParams(searchParams);
+  const handleStatusChange = (value: PinStatusFilter) => {
+    const params = resetToFirstPage(
+      new URLSearchParams(searchParams.toString())
+    );
+    params.set("status", value);
+    setSearchParams(params);
   };
 
-  const handleSortChange = (value: "asc" | "desc") => {
-    searchParams.set("sort", value);
-    setSearchParams(searchParams);
+  const handleSortChange = (value: PinsSortOrder) => {
+    const params = resetToFirstPage(
+      new URLSearchParams(searchParams.toString())
+    );
+    params.set("sort", value);
+    setSearchParams(params);
   };
 
   return {

@@ -46,6 +46,23 @@ export type MyPin = {
   createdAt: string;
 };
 
+export type AdminPin = {
+  id: string;
+  title: string;
+  description: string;
+  type: PinType.Damage | PinType.Change | PinType.Idea;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  image?: string;
+  author: {
+    fullName: string;
+  };
+  status: PinStatus.Active | PinStatus.Resolved;
+  createdAt: string;
+};
+
 export type Pin = {
   id: string;
   type: PinType.Damage | PinType.Change | PinType.Idea;

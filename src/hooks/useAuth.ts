@@ -6,7 +6,7 @@ import {
   logoutFn,
   registerFn,
 } from "../pages/(auth)/actions";
-import { useSnackbarStore } from "../store/snackbarStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 
 export interface User {
   id: string;

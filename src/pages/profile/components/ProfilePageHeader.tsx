@@ -1,5 +1,5 @@
 import { Avatar, Button, Stack, Typography } from "@mui/material";
-import type { User } from "../../../hooks/useAuth";
+import type { User } from "@hooks/useAuth";
 import type { UseMutateFunction } from "@tanstack/react-query";
 
 export const ProfilePageHeader = ({

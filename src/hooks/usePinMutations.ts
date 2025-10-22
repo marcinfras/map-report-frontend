@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSnackbarStore } from "../store/snackbarStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 import { createPin, deletePin, updatePin } from "../pages/map/actions";
 
 export const usePinMutations = (onSuccessCallback?: () => void) => {
@@ -40,6 +40,7 @@ export const usePinMutations = (onSuccessCallback?: () => void) => {
       queryClient.setQueryData(["pin", data.id], null);
       queryClient.invalidateQueries({ queryKey: ["pin", data.pin.id] });
       queryClient.invalidateQueries({ queryKey: ["myPins"] });
+      queryClient.invalidateQueries({ queryKey: ["adminPins"] });
       handleSuccess("Pin deleted successfully");
     },
   });

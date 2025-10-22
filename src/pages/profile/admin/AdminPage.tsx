@@ -1,45 +1,62 @@
-import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getMyPins } from "../actions";
-import { ConfirmDeletePinDialog } from "../../map/pins/components/ConfirmDeletePinDialog";
-import { useMyPinsFilters } from "@hooks/useMyPinsFilters";
-import { MyPinsFilters } from "./components/MyPinsFilters";
+import { Box, Typography } from "@mui/material";
 import { Loader } from "@components/Loader";
 import { PinsEmptyState } from "../components/Pins/PinsEmptyState";
 import { PinsList } from "../components/Pins/PinsList";
+import { ConfirmDeletePinDialog } from "../../map/pins/components/ConfirmDeletePinDialog";
+import { AdminPinsFilters } from "./components/AdminPinsFilters";
+import { useAdminPinsFilters } from "@hooks/useAdminPinsFilters";
+import { getAdminPins } from "./actions";
 import { usePagination } from "@hooks/usePagination";
 import { PINS_PER_PAGE } from "@helpers/helpers";
 
-export const MyPinsPage = () => {
+export const AdminPage = () => {
   const [deletedPinId, setDeletedPinId] = useState<string | null>(null);
 
   const {
     typeFilter,
     statusFilter,
     sortOrder,
-    handleTypeChange,
-    handleStatusChange,
-    handleSortChange,
-  } = useMyPinsFilters();
+    searchValue,
+    searchField,
+    searchOperator,
+    applyFilters,
+  } = useAdminPinsFilters();
 
   const { page, setPage, resetToFirstPage } = usePagination();
 
   const {
-    data: { pins: myPins, pagination: { totalPages } } = {
+    data: { pins, pagination: { totalPages } } = {
       pins: [],
       pagination: { totalPages: 0 },
     },
     isFetching,
     error,
-    isError,
   } = useQuery({
-    queryKey: ["myPins", typeFilter, statusFilter, sortOrder, page],
+    queryKey: [
+      "adminPins",
+      typeFilter,
+      statusFilter,
+      sortOrder,
+      searchValue,
+      searchField,
+      searchOperator,
+      page,
+      PINS_PER_PAGE,
+    ],
     queryFn: () =>
-      getMyPins({
+      getAdminPins({
         ...(typeFilter !== "all" ? { type: typeFilter } : {}),
         ...(statusFilter !== "all" ? { status: statusFilter } : {}),
         ...(sortOrder ? { sort: sortOrder } : {}),
+        ...(searchValue
+          ? {
+              search: searchValue,
+              field: searchField,
+              operator: searchOperator,
+            }
+          : {}),
         page,
         limit: PINS_PER_PAGE,
       }),
@@ -48,39 +65,36 @@ export const MyPinsPage = () => {
   return (
     <Box p={3} maxWidth="800px" mx="auto">
       <Typography variant="h4" fontWeight="bold" mb={2}>
-        My Pins
+        Manage pins
       </Typography>
-      <MyPinsFilters
+
+      <AdminPinsFilters
         typeFilter={typeFilter}
         statusFilter={statusFilter}
         sortOrder={sortOrder}
-        handleTypeChange={handleTypeChange}
-        handleStatusChange={handleStatusChange}
-        handleSortChange={handleSortChange}
-        disabled={
-          isFetching ||
-          isError ||
-          (!myPins?.length &&
-            !isFetching &&
-            typeFilter === "all" &&
-            statusFilter === "all")
-        }
+        searchValue={searchValue}
+        searchField={searchField}
+        searchOperator={searchOperator}
+        onApply={applyFilters}
+        disabled={isFetching}
       />
+
       {isFetching && <Loader />}
 
-      {error || (!myPins?.length && !isFetching && !error) ? (
+      {error || (!pins?.length && !isFetching && !error) ? (
         <PinsEmptyState
           error={error}
           isFetching={isFetching}
-          pinsLength={myPins?.length || 0}
+          pinsLength={pins?.length || 0}
           typeFilter={typeFilter}
           statusFilter={statusFilter}
+          searchValue={searchValue}
         />
       ) : null}
 
-      {!isFetching && !error && myPins && (
+      {!isFetching && !error && pins && (
         <PinsList
-          pins={myPins}
+          pins={pins}
           setDeletedPinId={setDeletedPinId}
           page={page}
           setPage={setPage}

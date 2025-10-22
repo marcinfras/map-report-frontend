@@ -3,7 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { passwordSchema, type PasswordFormData } from "../profileSchemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PasswordField } from "./PasswordField";
-import { useProfileMutations } from "../../../hooks/useProfileMutations";
+import { useProfileMutations } from "@hooks/useProfileMutations";
 
 export const ChangePasswordForm = () => {
   const {

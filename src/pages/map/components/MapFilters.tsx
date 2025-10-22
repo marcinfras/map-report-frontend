@@ -5,9 +5,9 @@ import {
   Build,
   Lightbulb,
 } from "@mui/icons-material";
-import { PinType } from "../../../store/pinsStore";
-import { useSelectedPinType } from "../../../hooks/useSelectedPinType";
-import { usePinCounts } from "../../../hooks/usePinCounts";
+import { PinType } from "@store/pinsStore";
+import { useSelectedPinType } from "@hooks/useSelectedPinType";
+import { usePinCounts } from "@hooks/usePinCounts";
 
 const filters = [
   {

@@ -1,5 +1,5 @@
 import { Typography, Box, Card, alpha } from "@mui/material";
-import { fontWeight_600 } from "../../../helpers/sizes";
+import { fontWeight_600 } from "@helpers/sizes";
 
 export const Feature = ({
   icon: Icon,

@@ -5,7 +5,7 @@ import { Box, InputAdornment } from "@mui/material";
 import { AuthInput } from "./components/AuthInput";
 import { Email, Lock, Person } from "@mui/icons-material";
 import { AuthButton } from "./components/AuthButton";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 
 export const Register = () => {
   const {

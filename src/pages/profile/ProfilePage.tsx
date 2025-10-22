@@ -1,8 +1,8 @@
 import { Alert, Box } from "@mui/material";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 import { ProfilePageHeader } from "./components/ProfilePageHeader";
 import { EditProfileForm } from "./components/EditProfileForm";
-import { Loader } from "../../components/Loader";
+import { Loader } from "@components/Loader";
 import { ChangePasswordForm } from "./components/ChangePasswordForm";
 
 export const ProfilePage = () => {

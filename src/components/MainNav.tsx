@@ -7,7 +7,7 @@ import {
   fontSize_20,
   fontSize_30,
   fontSize_32,
-} from "../helpers/sizes";
+} from "@helpers/sizes";
 
 export const MainNav = () => {
   return (

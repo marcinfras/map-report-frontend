@@ -8,9 +8,9 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { getPinById } from "../actions";
-import { getTypeConfig } from "../../../helpers/getTypeConfig";
-import { formatDate, getStatusConfig } from "../../../helpers/helpers";
-import { useAuth } from "../../../hooks/useAuth";
+import { getTypeConfig } from "@helpers/getTypeConfig";
+import { formatDate, getStatusConfig } from "@helpers/helpers";
+import { useAuth } from "@hooks/useAuth";
 import { PinModal } from "../components/PinModal";
 import { ConfirmDeletePinDialog } from "./components/ConfirmDeletePinDialog";
 import { PinDetailsPageEditButtons } from "./components/PinDetailsPageEditButtons";
@@ -120,9 +120,9 @@ export const PinDetailsPage = () => {
         </Typography>
       </Box>
 
-      {pin.author.id === user?.profile.id && (
+      {pin.author.id === user?.profile.id || user?.profile.role === "admin" ? (
         <PinDetailsPageEditButtons pin={pin} />
-      )}
+      ) : null}
       <ConfirmDeletePinDialog id={pin.id} redirect="/map" />
       <PinModal
         pinToEdit={{
