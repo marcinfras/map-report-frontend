@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router";
-import type { User } from "../hooks/useAuth";
+import type { User } from "@hooks/useAuth";
 
 export const NavAuthMenu = ({
   user,

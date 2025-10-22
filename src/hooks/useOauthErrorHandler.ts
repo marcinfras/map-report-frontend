@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { useSnackbarStore } from "../store/snackbarStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 
 enum OAuthError {
   CANCELLED = "oauth_cancelled",

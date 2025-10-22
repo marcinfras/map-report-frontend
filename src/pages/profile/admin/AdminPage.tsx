@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Box, Typography } from "@mui/material";
-import { Loader } from "../../../components/Loader";
+import { Loader } from "@components/Loader";
 import { PinsEmptyState } from "../components/Pins/PinsEmptyState";
 import { PinsList } from "../components/Pins/PinsList";
 import { ConfirmDeletePinDialog } from "../../map/pins/components/ConfirmDeletePinDialog";
 import { AdminPinsFilters } from "./components/AdminPinsFilters";
-import { useAdminPinsFilters } from "../../../hooks/useAdminPinsFilters";
+import { useAdminPinsFilters } from "@hooks/useAdminPinsFilters";
 import { getAdminPins } from "./actions";
-import { usePagination } from "../../../hooks/usePagination";
-import { PINS_PER_PAGE } from "../../../helpers/helpers";
+import { usePagination } from "@hooks/usePagination";
+import { PINS_PER_PAGE } from "@helpers/helpers";
 
 export const AdminPage = () => {
   const [deletedPinId, setDeletedPinId] = useState<string | null>(null);

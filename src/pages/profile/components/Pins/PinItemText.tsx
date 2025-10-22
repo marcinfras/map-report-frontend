@@ -1,5 +1,5 @@
 import { Box, ListItemText, Typography } from "@mui/material";
-import { formatDate } from "../../../../helpers/helpers";
+import { formatDate } from "@helpers/helpers";
 
 export const PinItemText = ({
   createdAt,

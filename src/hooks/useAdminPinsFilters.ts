@@ -1,7 +1,11 @@
 import { useSearchParams } from "react-router";
-import { PinStatus, PinType } from "../store/pinsStore";
-import { isValidSearchField, isValidSearchOperator } from "../helpers/helpers";
-import { useMyPinsFilters } from "./useMyPinsFilters";
+import { PinType } from "@store/pinsStore";
+import { isValidSearchField, isValidSearchOperator } from "@helpers/helpers";
+import {
+  PinStatusFilter,
+  PinsSortOrder,
+  useMyPinsFilters,
+} from "./useMyPinsFilters";
 
 export enum SearchOperator {
   Contains = "contains",
@@ -36,8 +40,8 @@ export const useAdminPinsFilters = () => {
 
   const applyFilters = (filters: {
     type: PinType;
-    status: PinStatus | "all";
-    sort: "asc" | "desc";
+    status: PinStatusFilter;
+    sort: PinsSortOrder;
     searchValue?: string;
     searchField?: SearchField;
     searchOperator?: SearchOperator;

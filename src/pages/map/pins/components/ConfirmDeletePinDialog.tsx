@@ -6,8 +6,8 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import { usePinsStore } from "../../../../store/pinsStore";
-import { usePinMutations } from "../../../../hooks/usePinMutations";
+import { usePinsStore } from "@store/pinsStore";
+import { usePinMutations } from "@hooks/usePinMutations";
 import { useNavigate } from "react-router";
 
 export const ConfirmDeletePinDialog = ({

@@ -1,9 +1,9 @@
 import { Dialog, DialogTitle, DialogContent, Box } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../../hooks/useAuth";
-import { usePinsStore } from "../../../store/pinsStore";
-import { useSnackbarStore } from "../../../store/snackbarStore";
+import { useAuth } from "@hooks/useAuth";
+import { usePinsStore } from "@store/pinsStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 import { PinFormType, pinSchema, type PinFormData } from "../pinSchemas";
 import { PinModalButtons } from "./PinModal/PinModalButtons";
 import { PinModalNotAuth } from "./PinModal/PinModalNotAuth";
@@ -11,7 +11,7 @@ import { PinModalTitleField } from "./PinModal/PinModalTitleField";
 import { PinModalTypeField } from "./PinModal/PinModalTypeField";
 import { PinModalDescriptionField } from "./PinModal/PinModalDescriptionField";
 import { PinModalFileField } from "./PinModal/PinModalFileField";
-import { usePinMutations } from "../../../hooks/usePinMutations";
+import { usePinMutations } from "@hooks/usePinMutations";
 import { useEffect } from "react";
 
 interface PinModalProps {

@@ -2,7 +2,7 @@ import type { ControllerRenderProps, FieldError } from "react-hook-form";
 import type { PinFormData } from "../../pinSchemas";
 import { CloudUpload } from "@mui/icons-material";
 import { Box, FormLabel, Typography } from "@mui/material";
-import { fontSize_40 } from "../../../../helpers/sizes";
+import { fontSize_40 } from "@helpers/sizes";
 
 export const PinModalFileField = ({
   field,

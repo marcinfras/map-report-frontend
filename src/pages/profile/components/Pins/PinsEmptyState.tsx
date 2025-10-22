@@ -1,12 +1,13 @@
+import type { PinStatusFilter } from "@hooks/useMyPinsFilters";
 import { Box, Typography } from "@mui/material";
-import type { PinStatus, PinType } from "../../../../store/pinsStore";
+import type { PinType } from "@store/pinsStore";
 
 interface PinsEmptyStateProps {
   error?: Error | null;
   isFetching: boolean;
   pinsLength: number;
   typeFilter: PinType;
-  statusFilter: PinStatus | "all";
+  statusFilter: PinStatusFilter;
   searchValue?: string;
 }
 

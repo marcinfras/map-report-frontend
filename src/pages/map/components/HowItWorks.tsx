@@ -11,7 +11,7 @@ import {
   Info as InfoIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
-import { fontSize_20, fontWeight_600 } from "../../../helpers/sizes";
+import { fontSize_20, fontWeight_600 } from "@helpers/sizes";
 
 export const HowItWorks = () => {
   return (

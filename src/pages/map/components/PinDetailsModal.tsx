@@ -8,16 +8,16 @@ import {
   Box,
   Chip,
 } from "@mui/material";
-import { usePinsStore } from "../../../store/pinsStore";
-import { useSelectedPinId } from "../../../hooks/useSelectedPinId";
+import { usePinsStore } from "@store/pinsStore";
+import { useSelectedPinId } from "@hooks/useSelectedPinId";
 import { useQuery } from "@tanstack/react-query";
 import { getPinById } from "../actions";
-import { useSnackbarStore } from "../../../store/snackbarStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 import { useEffect } from "react";
-import { formatDate } from "../../../helpers/helpers";
+import { formatDate } from "@helpers/helpers";
 import { Link } from "react-router";
-import { getTypeConfig } from "../../../helpers/getTypeConfig";
-import { Loader } from "../../../components/Loader";
+import { getTypeConfig } from "@helpers/getTypeConfig";
+import { Loader } from "@components/Loader";
 
 export const PinDetailsModal = () => {
   const { pinDetailsModalOpen, setIsPinDetailsModalOpen } = usePinsStore();

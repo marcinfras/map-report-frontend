@@ -7,11 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import type { User } from "../../../hooks/useAuth";
+import type { User } from "@hooks/useAuth";
 import { profileSchema, type ProfileFormData } from "../profileSchemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AvatarInputField } from "./AvatarInputField";
-import { useProfileMutations } from "../../../hooks/useProfileMutations";
+import { useProfileMutations } from "@hooks/useProfileMutations";
 
 export const EditProfileForm = ({ user }: { user: User }) => {
   const {

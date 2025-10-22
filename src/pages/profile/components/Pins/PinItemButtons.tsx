@@ -1,7 +1,7 @@
 import { Box, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { usePinsStore } from "../../../../store/pinsStore";
+import { usePinsStore } from "@store/pinsStore";
 import { useNavigate } from "react-router";
 
 export const PinItemButtons = ({

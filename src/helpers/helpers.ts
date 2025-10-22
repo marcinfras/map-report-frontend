@@ -1,7 +1,8 @@
 import L from "leaflet";
-import { PinStatus, PinType } from "../store/pinsStore";
+import { PinStatus, PinType } from "@store/pinsStore";
 import type { ChipOwnProps, Theme } from "@mui/material";
-import { SearchField, SearchOperator } from "../hooks/useAdminPinsFilters";
+import { SearchField, SearchOperator } from "@hooks/useAdminPinsFilters";
+import type { PinStatusFilter } from "@hooks/useMyPinsFilters";
 
 export const PINS_PER_PAGE = 5;
 
@@ -26,7 +27,7 @@ export const isValidPinType = (value: string): value is PinType => {
   return Object.values(PinType).includes(value as PinType);
 };
 
-export const isValidPinStatus = (value: string): value is PinStatus => {
+export const isValidPinStatus = (value: string): value is PinStatusFilter => {
   return Object.values(PinStatus).includes(value as PinStatus);
 };
 

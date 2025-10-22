@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { changePassword, updateProfile } from "../pages/profile/actions";
-import { useSnackbarStore } from "../store/snackbarStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 
 export const useProfileMutations = (onSuccessCallback?: () => void) => {
   const { show } = useSnackbarStore();

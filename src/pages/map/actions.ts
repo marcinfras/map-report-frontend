@@ -1,4 +1,4 @@
-import { PinType, type Pin, type PinDetails } from "../../store/pinsStore";
+import { PinType, type Pin, type PinDetails } from "@store/pinsStore";
 
 export const createPin = async (data: FormData) => {
   try {

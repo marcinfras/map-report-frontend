@@ -1,7 +1,18 @@
 import { useSearchParams } from "react-router";
-import { PinStatus, PinType } from "../store/pinsStore";
-import { isValidPinStatus, isValidPinType } from "../helpers/helpers";
+import { PinStatus, PinType } from "@store/pinsStore";
+import { isValidPinStatus, isValidPinType } from "@helpers/helpers";
 import { usePagination } from "./usePagination";
+
+export enum PinsSortOrder {
+  Asc = "asc",
+  Desc = "desc",
+}
+
+export enum PinStatusFilter {
+  All = "all",
+  Active = PinStatus.Active,
+  Resolved = PinStatus.Resolved,
+}
 
 export const useMyPinsFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,13 +31,14 @@ export const useMyPinsFilters = () => {
   };
 
   const rawStatus = searchParams.get("status");
-  const statusFilter: PinStatus | "all" =
-    rawStatus && isValidPinStatus(rawStatus) ? rawStatus : "all";
+  const statusFilter: PinStatusFilter =
+    rawStatus && isValidPinStatus(rawStatus) ? rawStatus : PinStatusFilter.All;
 
   const rawSort = searchParams.get("sort");
-  const sortOrder: "asc" | "desc" = rawSort === "asc" ? "asc" : "desc";
+  const sortOrder: PinsSortOrder =
+    rawSort === PinsSortOrder.Asc ? PinsSortOrder.Asc : PinsSortOrder.Desc;
 
-  const handleStatusChange = (value: PinStatus | "all") => {
+  const handleStatusChange = (value: PinStatusFilter) => {
     const params = resetToFirstPage(
       new URLSearchParams(searchParams.toString())
     );
@@ -34,7 +46,7 @@ export const useMyPinsFilters = () => {
     setSearchParams(params);
   };
 
-  const handleSortChange = (value: "asc" | "desc") => {
+  const handleSortChange = (value: PinsSortOrder) => {
     const params = resetToFirstPage(
       new URLSearchParams(searchParams.toString())
     );

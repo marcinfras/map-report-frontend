@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useSnackbarStore } from "../store/snackbarStore";
+import { useSnackbarStore } from "@store/snackbarStore";
 import { createPin, deletePin, updatePin } from "../pages/map/actions";
 
 export const usePinMutations = (onSuccessCallback?: () => void) => {

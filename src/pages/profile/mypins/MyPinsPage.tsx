@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getMyPins } from "../actions";
 import { ConfirmDeletePinDialog } from "../../map/pins/components/ConfirmDeletePinDialog";
-import { useMyPinsFilters } from "../../../hooks/useMyPinsFilters";
+import { useMyPinsFilters } from "@hooks/useMyPinsFilters";
 import { MyPinsFilters } from "./components/MyPinsFilters";
-import { Loader } from "../../../components/Loader";
+import { Loader } from "@components/Loader";
 import { PinsEmptyState } from "../components/Pins/PinsEmptyState";
 import { PinsList } from "../components/Pins/PinsList";
-import { usePagination } from "../../../hooks/usePagination";
-import { PINS_PER_PAGE } from "../../../helpers/helpers";
+import { usePagination } from "@hooks/usePagination";
+import { PINS_PER_PAGE } from "@helpers/helpers";
 
 export const MyPinsPage = () => {
   const [deletedPinId, setDeletedPinId] = useState<string | null>(null);

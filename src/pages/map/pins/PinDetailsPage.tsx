@@ -8,9 +8,9 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { getPinById } from "../actions";
-import { getTypeConfig } from "../../../helpers/getTypeConfig";
-import { formatDate, getStatusConfig } from "../../../helpers/helpers";
-import { useAuth } from "../../../hooks/useAuth";
+import { getTypeConfig } from "@helpers/getTypeConfig";
+import { formatDate, getStatusConfig } from "@helpers/helpers";
+import { useAuth } from "@hooks/useAuth";
 import { PinModal } from "../components/PinModal";
 import { ConfirmDeletePinDialog } from "./components/ConfirmDeletePinDialog";
 import { PinDetailsPageEditButtons } from "./components/PinDetailsPageEditButtons";

@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router";
-import { PinType } from "../store/pinsStore";
-import { isValidPinType } from "../helpers/helpers";
+import { PinType } from "@store/pinsStore";
+import { isValidPinType } from "@helpers/helpers";
 
 export const useSelectedPinType = () => {
   const [searchParams, setSearchParams] = useSearchParams();

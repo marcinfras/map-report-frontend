@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import { Link } from "react-router";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 import { Map as MapIcon, Login as LoginIcon } from "@mui/icons-material";
 import { NavAuthMenu } from "./NavAuthMenu";
 

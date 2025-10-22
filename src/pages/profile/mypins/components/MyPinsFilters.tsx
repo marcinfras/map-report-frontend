@@ -1,3 +1,4 @@
+import { PinStatusFilter, PinsSortOrder } from "@hooks/useMyPinsFilters";
 import {
   Box,
   FormControl,
@@ -6,15 +7,15 @@ import {
   Select,
   type SelectChangeEvent,
 } from "@mui/material";
-import { PinStatus, PinType } from "../../../../store/pinsStore";
+import { PinStatus, PinType } from "@store/pinsStore";
 
 interface MyPinsFiltersProps {
   typeFilter: PinType;
-  statusFilter: PinStatus | "all";
-  sortOrder: "asc" | "desc";
+  statusFilter: PinStatusFilter;
+  sortOrder: PinsSortOrder;
   handleTypeChange: (val: PinType) => void;
-  handleStatusChange: (val: PinStatus | "all") => void;
-  handleSortChange: (val: "asc" | "desc") => void;
+  handleStatusChange: (val: PinStatusFilter) => void;
+  handleSortChange: (val: PinsSortOrder) => void;
   disabled?: boolean;
 }
 
@@ -51,7 +52,7 @@ export const MyPinsFilters = ({
         <Select
           disabled={disabled}
           value={statusFilter}
-          onChange={(e: SelectChangeEvent<PinStatus | "all">) =>
+          onChange={(e: SelectChangeEvent<PinStatusFilter>) =>
             handleStatusChange(e.target.value)
           }
           label="Status"
@@ -70,8 +71,8 @@ export const MyPinsFilters = ({
           onChange={(e) => handleSortChange(e.target.value)}
           label="Sort"
         >
-          <MenuItem value="desc">Newest</MenuItem>
-          <MenuItem value="asc">Oldest</MenuItem>
+          <MenuItem value={PinsSortOrder.Desc}>Newest</MenuItem>
+          <MenuItem value={PinsSortOrder.Asc}>Oldest</MenuItem>
         </Select>
       </FormControl>
     </Box>

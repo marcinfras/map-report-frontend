@@ -1,4 +1,4 @@
-import type { User } from "../../hooks/useAuth";
+import type { User } from "@hooks/useAuth";
 import type { LoginFormValues, RegisterFormValues } from "./authSchema";
 
 export const loginFn = async (data: LoginFormValues) => {

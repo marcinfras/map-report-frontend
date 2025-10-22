@@ -1,7 +1,7 @@
 import { Typography, Box, Card } from "@mui/material";
 import { Info as InfoIcon } from "@mui/icons-material";
-import { usePinCounts } from "../../../hooks/usePinCounts";
-import { fontWeight_600 } from "../../../helpers/sizes";
+import { usePinCounts } from "@hooks/usePinCounts";
+import { fontWeight_600 } from "@helpers/sizes";
 
 export const CommunityImpact = () => {
   const { counts } = usePinCounts();

@@ -1,23 +1,21 @@
 import { Box, Stack, TextField, MenuItem, Button } from "@mui/material";
 import { MyPinsFilters } from "../../mypins/components/MyPinsFilters";
-import type { PinStatus, PinType } from "../../../../store/pinsStore";
+import type { PinType } from "@store/pinsStore";
 import { useState } from "react";
-import type {
-  SearchField,
-  SearchOperator,
-} from "../../../../hooks/useAdminPinsFilters";
+import type { SearchField, SearchOperator } from "@hooks/useAdminPinsFilters";
+import type { PinStatusFilter, PinsSortOrder } from "@hooks/useMyPinsFilters";
 
 interface AdminPinsFiltersProps {
   typeFilter: PinType;
-  statusFilter: PinStatus | "all";
-  sortOrder: "asc" | "desc";
+  statusFilter: PinStatusFilter;
+  sortOrder: PinsSortOrder;
   searchValue: string;
   searchField: SearchField;
   searchOperator: SearchOperator;
   onApply: (filters: {
     type: PinType;
-    status: PinStatus | "all";
-    sort: "asc" | "desc";
+    status: PinStatusFilter;
+    sort: PinsSortOrder;
     searchValue?: string;
     searchField?: SearchField;
     searchOperator?: SearchOperator;

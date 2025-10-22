@@ -1,5 +1,5 @@
 import { List } from "@mui/material";
-import type { AdminPin, MyPin } from "../../../../store/pinsStore";
+import type { AdminPin, MyPin } from "@store/pinsStore";
 import { PinItem } from "./PinItem";
 import { PinsPagination } from "./PinsPagination";
 

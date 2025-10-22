@@ -1,5 +1,6 @@
-import type { MyPin } from "../../store/pinsStore";
+import type { MyPin } from "@store/pinsStore";
 import type { PasswordFormData } from "./profileSchemas";
+import type { PinsSortOrder } from "@hooks/useMyPinsFilters";
 
 export const getMyPins = async ({
   type,
@@ -10,7 +11,7 @@ export const getMyPins = async ({
 }: {
   type?: string;
   status?: string;
-  sort?: "asc" | "desc";
+  sort?: PinsSortOrder;
   page?: number;
   limit?: number;
 }) => {

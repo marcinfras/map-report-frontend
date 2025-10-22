@@ -1,4 +1,5 @@
-import type { AdminPin } from "../../../store/pinsStore";
+import type { PinsSortOrder } from "@hooks/useMyPinsFilters";
+import type { AdminPin } from "@store/pinsStore";
 
 export const getAdminPins = async ({
   type,
@@ -14,7 +15,7 @@ export const getAdminPins = async ({
   limit?: number;
   type?: string;
   status?: string;
-  sort?: "asc" | "desc";
+  sort?: PinsSortOrder;
   search?: string;
   field?: string;
   operator?: string;
