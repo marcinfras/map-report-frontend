@@ -8,7 +8,7 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
-import { PinFormType } from "../../pinSchemas";
+import { PinType } from "@marcinfras/map-report-server/types";
 
 export const PinModalTypeField = ({
   field,
@@ -22,7 +22,7 @@ export const PinModalTypeField = ({
       <FormLabel component="legend">Type *</FormLabel>
       <RadioGroup {...field} row sx={{ mt: 1 }}>
         <FormControlLabel
-          value={PinFormType.Damage}
+          value={PinType.Damage}
           control={
             <Radio
               sx={{
@@ -34,7 +34,7 @@ export const PinModalTypeField = ({
           label="Damage"
         />
         <FormControlLabel
-          value={PinFormType.Change}
+          value={PinType.Change}
           control={
             <Radio
               sx={{
@@ -46,7 +46,7 @@ export const PinModalTypeField = ({
           label="Change"
         />
         <FormControlLabel
-          value={PinFormType.Idea}
+          value={PinType.Idea}
           control={
             <Radio
               sx={{

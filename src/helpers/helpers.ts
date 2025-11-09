@@ -1,8 +1,9 @@
 import L from "leaflet";
-import { PinStatus, PinType } from "@store/pinsStore";
+import { PinType } from "@store/pinsStore";
 import type { ChipOwnProps, Theme } from "@mui/material";
 import { SearchField, SearchOperator } from "@hooks/useAdminPinsFilters";
 import type { PinStatusFilter } from "@hooks/useMyPinsFilters";
+import { PinStatus } from "@marcinfras/map-report-server/types";
 
 export const PINS_PER_PAGE = 5;
 

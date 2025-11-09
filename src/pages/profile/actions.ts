@@ -1,4 +1,4 @@
-import type { MyPin } from "@store/pinsStore";
+import type { listMyPins } from "@marcinfras/map-report-server/types";
 import type { PasswordFormData } from "./profileSchemas";
 import type { PinsSortOrder } from "@hooks/useMyPinsFilters";
 
@@ -47,10 +47,7 @@ export const getMyPins = async ({
 
     const resData = await res.json();
 
-    return resData as {
-      pins: MyPin[];
-      pagination: { total: number; totalPages: number };
-    };
+    return resData as listMyPins;
   } catch (error) {
     throw new Error((error as Error).message);
   }

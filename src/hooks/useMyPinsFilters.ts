@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router";
-import { PinStatus, PinType } from "@store/pinsStore";
+import { PinType } from "@store/pinsStore";
 import { isValidPinStatus, isValidPinType } from "@helpers/helpers";
 import { usePagination } from "./usePagination";
+import { PinStatus } from "@marcinfras/map-report-server/types";
 
 export enum PinsSortOrder {
   Asc = "asc",

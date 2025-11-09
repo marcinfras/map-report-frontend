@@ -8,18 +8,6 @@ import {
 } from "../pages/(auth)/actions";
 import { useSnackbarStore } from "@store/snackbarStore";
 
-export interface User {
-  id: string;
-  email: string;
-  userType: "standard" | "thirdParty";
-  profile: {
-    id: string;
-    fullName: string;
-    avatar?: string;
-    role: "user" | "admin";
-  };
-}
-
 export const useAuth = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();

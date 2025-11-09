@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material";
-import { usePinsStore, type PinDetails } from "@store/pinsStore";
+import { usePinsStore } from "@store/pinsStore";
 import { usePinMutations } from "@hooks/usePinMutations";
+import type { PinDetails } from "@marcinfras/map-report-server/types";
 
 export const PinDetailsPageEditButtons = ({ pin }: { pin: PinDetails }) => {
   const { setIsDeletePinDialogOpen, setIsAddPinModalOpen } = usePinsStore();

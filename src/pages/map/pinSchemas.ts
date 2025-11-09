@@ -1,15 +1,10 @@
 import * as yup from "yup";
-
-export enum PinFormType {
-  Damage = "damage",
-  Change = "change",
-  Idea = "idea",
-}
+import { PinType } from "@marcinfras/map-report-server/types";
 
 export interface PinFormData {
   title: string;
   description: string;
-  type: PinFormType;
+  type: PinType;
   file?: File;
 }
 
@@ -25,8 +20,8 @@ export const pinSchema = yup.object().shape({
     .required("Description is required")
     .max(500, "Description is too long (max 500 characters)"),
   type: yup
-    .mixed<PinFormType>()
-    .oneOf(Object.values(PinFormType))
+    .mixed<PinType>()
+    .oneOf(Object.values(PinType))
     .required("Type is required"),
   file: yup
     .mixed<File>()

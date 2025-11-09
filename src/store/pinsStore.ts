@@ -1,76 +1,12 @@
 import { create } from "zustand";
-import type { PinFormType } from "../pages/map/pinSchemas";
+import { PinType as BackendPinType } from "@marcinfras/map-report-server/types";
 
 export enum PinType {
   All = "all",
-  Damage = "damage",
-  Change = "change",
-  Idea = "idea",
+  Damage = BackendPinType.Damage,
+  Change = BackendPinType.Change,
+  Idea = BackendPinType.Idea,
 }
-
-export enum PinStatus {
-  Active = "active",
-  Resolved = "resolved",
-}
-
-export type PinDetails = {
-  id: string;
-  title: string;
-  description: string;
-  type: PinFormType.Damage | PinFormType.Change | PinFormType.Idea;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  image?: string;
-  author: {
-    id: string;
-    fullName: string;
-  };
-  status: PinStatus.Active | PinStatus.Resolved;
-  createdAt: string;
-};
-
-export type MyPin = {
-  id: string;
-  title: string;
-  description: string;
-  type: PinType.Damage | PinType.Change | PinType.Idea;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  image?: string;
-  author: string;
-  status: PinStatus.Active | PinStatus.Resolved;
-  createdAt: string;
-};
-
-export type AdminPin = {
-  id: string;
-  title: string;
-  description: string;
-  type: PinType.Damage | PinType.Change | PinType.Idea;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  image?: string;
-  author: {
-    fullName: string;
-  };
-  status: PinStatus.Active | PinStatus.Resolved;
-  createdAt: string;
-};
-
-export type Pin = {
-  id: string;
-  type: PinType.Damage | PinType.Change | PinType.Idea;
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-};
 
 type PinsState = {
   addPinModalOpen: boolean;

@@ -1,4 +1,4 @@
-import type { User } from "@hooks/useAuth";
+import type { ApiUser as User } from "@marcinfras/map-report-server/types";
 import type { LoginFormValues, RegisterFormValues } from "./authSchema";
 
 export const loginFn = async (data: LoginFormValues) => {

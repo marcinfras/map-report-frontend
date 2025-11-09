@@ -1,7 +1,8 @@
 import { Box, Chip } from "@mui/material";
 import { getTypeConfig } from "@helpers/getTypeConfig";
 import { getStatusConfig } from "@helpers/helpers";
-import type { PinStatus, PinType } from "@store/pinsStore";
+import type { PinType } from "@store/pinsStore";
+import { PinStatus } from "@marcinfras/map-report-server/types";
 
 export const PinItemChips = ({
   type,

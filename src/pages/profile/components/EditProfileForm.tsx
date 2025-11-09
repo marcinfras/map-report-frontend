@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import type { User } from "@hooks/useAuth";
+import type { ApiUser as User } from "@marcinfras/map-report-server/types";
 import { profileSchema, type ProfileFormData } from "../profileSchemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AvatarInputField } from "./AvatarInputField";
