@@ -21,7 +21,7 @@ export const Map = () => {
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             gap: 4,
-            mb: 4,
+            mb: 6,
           }}
         >
           <HowItWorks />

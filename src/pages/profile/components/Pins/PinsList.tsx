@@ -1,7 +1,7 @@
 import { List } from "@mui/material";
-import type { AdminPin, MyPin } from "@store/pinsStore";
 import { PinItem } from "./PinItem";
 import { PinsPagination } from "./PinsPagination";
+import type { AdminPin, MyPin } from "@marcinfras/map-report-server/types";
 
 export const PinsList = ({
   pins,

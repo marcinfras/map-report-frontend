@@ -1,9 +1,8 @@
 import { Avatar, Box, Divider, ListItem, ListItemAvatar } from "@mui/material";
-
-import { type AdminPin, type MyPin } from "@store/pinsStore";
 import { PinItemChips } from "./PinItemChips";
 import { PinItemText } from "./PinItemText";
 import { PinItemButtons } from "./PinItemButtons";
+import type { AdminPin, MyPin } from "@marcinfras/map-report-server/types";
 
 interface MyPinItemProps {
   pin: MyPin | AdminPin;

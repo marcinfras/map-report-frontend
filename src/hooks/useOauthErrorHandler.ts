@@ -1,12 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { useSnackbarStore } from "@store/snackbarStore";
-
-enum OAuthError {
-  CANCELLED = "oauth_cancelled",
-  FAILED = "oauth_failed",
-  ACCOUNT_EXISTS = "oauth_account_exists",
-}
+import { OAuthError } from "@marcinfras/map-report-server/types";
 
 const getOAuthErrorMessage = (error: string): string => {
   switch (error) {

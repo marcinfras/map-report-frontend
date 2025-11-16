@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router";
-import type { User } from "@hooks/useAuth";
+import type { ApiUser as User } from "@marcinfras/map-report-server/types";
 
 export const NavAuthMenu = ({
   user,

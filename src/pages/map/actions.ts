@@ -1,4 +1,6 @@
-import { PinType, type Pin, type PinDetails } from "@store/pinsStore";
+import type { PinDetails } from "@marcinfras/map-report-server/types";
+import { PinType } from "@store/pinsStore";
+import type { MapPin as Pin } from "@marcinfras/map-report-server/types";
 
 export const createPin = async (data: FormData) => {
   try {

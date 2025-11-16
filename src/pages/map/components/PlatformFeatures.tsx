@@ -1,19 +1,11 @@
-import { Typography, Box } from "@mui/material";
 import {
   Place as PlaceIcon,
   PhotoCamera as PhotoCameraIcon,
   Group as GroupIcon,
 } from "@mui/icons-material";
-import { Feature } from "./Feature";
+import { FeaturesSection, type FeatureItem } from "@components/FeaturesSection";
 
-type FeatureType = {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  color: "primary" | "secondary" | "error" | "warning" | "info" | "success";
-}[];
-
-const features: FeatureType = [
+const features: FeatureItem[] = [
   {
     icon: PlaceIcon,
     title: "Location-Based Reporting",
@@ -39,25 +31,10 @@ const features: FeatureType = [
 
 export const PlatformFeatures = () => {
   return (
-    <Box sx={{ mb: 4 }}>
-      <Typography
-        variant="h4"
-        component="h3"
-        sx={{ fontWeight: "bold", mb: 3, textAlign: "center" }}
-      >
-        Platform Features
-      </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          gap: 3,
-        }}
-      >
-        {features.map((feature) => (
-          <Feature key={feature.title} {...feature} />
-        ))}
-      </Box>
-    </Box>
+    <FeaturesSection
+      features={features}
+      title="Platform Features"
+      sx={{ mb: 4 }}
+    />
   );
 };

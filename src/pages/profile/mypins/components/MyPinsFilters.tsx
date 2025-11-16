@@ -7,7 +7,8 @@ import {
   Select,
   type SelectChangeEvent,
 } from "@mui/material";
-import { PinStatus, PinType } from "@store/pinsStore";
+import { PinType } from "@store/pinsStore";
+import { PinStatus } from "@marcinfras/map-report-server/types";
 
 interface MyPinsFiltersProps {
   typeFilter: PinType;

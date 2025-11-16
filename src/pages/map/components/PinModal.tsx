@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "@hooks/useAuth";
 import { usePinsStore } from "@store/pinsStore";
 import { useSnackbarStore } from "@store/snackbarStore";
-import { PinFormType, pinSchema, type PinFormData } from "../pinSchemas";
+import { pinSchema, type PinFormData } from "../pinSchemas";
 import { PinModalButtons } from "./PinModal/PinModalButtons";
 import { PinModalNotAuth } from "./PinModal/PinModalNotAuth";
 import { PinModalTitleField } from "./PinModal/PinModalTitleField";
@@ -13,6 +13,7 @@ import { PinModalDescriptionField } from "./PinModal/PinModalDescriptionField";
 import { PinModalFileField } from "./PinModal/PinModalFileField";
 import { usePinMutations } from "@hooks/usePinMutations";
 import { useEffect } from "react";
+import { PinType } from "@marcinfras/map-report-server/types";
 
 interface PinModalProps {
   pinToEdit?: PinFormData & { id: string };
@@ -37,7 +38,7 @@ export const PinModal = ({ pinToEdit }: PinModalProps) => {
       : {
           title: "",
           description: "",
-          type: PinFormType.Damage,
+          type: PinType.Damage,
           file: undefined,
         },
   });
@@ -81,7 +82,7 @@ export const PinModal = ({ pinToEdit }: PinModalProps) => {
       reset({
         title: "",
         description: "",
-        type: PinFormType.Damage,
+        type: PinType.Damage,
         file: undefined,
       });
     }

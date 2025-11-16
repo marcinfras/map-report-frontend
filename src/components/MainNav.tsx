@@ -12,7 +12,7 @@ import {
 export const MainNav = () => {
   return (
     <AppBar
-      position="static"
+      position="sticky"
       color="transparent"
       elevation={1}
       sx={{

@@ -1,5 +1,5 @@
 import type { PinsSortOrder } from "@hooks/useMyPinsFilters";
-import type { AdminPin } from "@store/pinsStore";
+import type { listAdminPins } from "@marcinfras/map-report-server/types";
 
 export const getAdminPins = async ({
   type,
@@ -57,10 +57,7 @@ export const getAdminPins = async ({
 
     const resData = await res.json();
 
-    return resData as {
-      pins: AdminPin[];
-      pagination: { total: number; totalPages: number };
-    };
+    return resData as listAdminPins;
   } catch (error) {
     throw new Error((error as Error).message);
   }
